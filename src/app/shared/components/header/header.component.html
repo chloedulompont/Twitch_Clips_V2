@@ -1,5 +1,37 @@
-<header class="bg-green-100">
-  <nav>
+<header class="bg-purple-900 text-neutral-200">
+  <nav class="py-4 px-8 flex justify-between items-center">
+    <a href="#" routerLink="/">
+      <h1 class="text-lg font-bold">Twitch Clips</h1>
+    </a>
+    <a href="#" routerLink="/login" *ngIf="!isLoggedIn" (click)="login()" class="hover:underline">Se connecter /
+      S'inscrire</a>
+    <ng-container *ngIf="isLoggedIn">
+      <ul class="hidden sm:flex sm:w-2/3 lg:w-1/3 justify-between items-center list-none">
+        <div class="w-2/3 flex gap-4 items-center">
+          <li><a href="#" routerLink="/video/manage" class="hover:underline">Gérer les vidéos</a></li>
+          <li><a href="#" routerLink="/video/upload" class="hover:underline">Upload une vidéo</a></li>
+        </div>
+        <li class="hover:cursor-pointer hover:underline" (click)="logout()">Se déconnecter</li>
+      </ul>
+      <div class="sm:hidden text-3xl" (click)="toggleShowMobileMenu()">
+        <fa-icon [icon]="barsIcon"></fa-icon>
+      </div>
+    </ng-container>
 
   </nav>
+
+  <!-- Menu to display if  -->
+  <div class=" sm:hidden pb-3 px-6" *ngIf="showMobileMenu && isLoggedIn">
+    <ul class="list-none w-max mx-auto">
+      <li class="mb-3"><a href="#" routerLink="/video/manage" class="focus:underline">Gérer les vidéos
+        <fa-icon [icon]="arrow"></fa-icon>
+      </a></li>
+      <li class="mb-3"><a href="#" routerLink="/video/upload" class="focus:underline">Upload une vidéo
+        <fa-icon [icon]="arrow"></fa-icon>
+      </a></li>
+      <li class="mb-3 focus:underline" (click)="logout()">Se déconnecter
+        <fa-icon [icon]="arrow"></fa-icon>
+      </li>
+    </ul>
+  </div>
 </header>
