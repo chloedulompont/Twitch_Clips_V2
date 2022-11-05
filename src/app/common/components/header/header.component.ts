@@ -4,7 +4,6 @@ import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {faArrowRight, faBars} from "@fortawesome/free-solid-svg-icons";
 import {AuthenticationService} from "../../../authentication/services/authentication.service";
 import {LoginComponent} from "../../../authentication/components/login/login.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-header',
@@ -25,7 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -50,11 +48,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openAuthModal(): void {
-    this.modalService.open(this.authModal, {
+
+/*    this.modalService.open(this.authModal, {
       size: 'lg',
       centered: true,
       animation: true
-    })
+    })*/
   }
 }
 
