@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isLoggedIn: boolean = false;
 
   public barsIcon: IconDefinition = faBars;
-  public arrow: IconDefinition = faArrowRight
+  public arrow: IconDefinition = faArrowRight;
 
   constructor(
     private authenticationService: AuthenticationService
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   /**
    * @deprecated à supprimer dès l'implémentation de l'authentification
    */
-  public login(): void {
+  public toggleIsConnected(): void {
     this.authenticationService.login();
   }
 }
