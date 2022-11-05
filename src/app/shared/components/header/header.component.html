@@ -3,7 +3,7 @@
     <a href="#" routerLink="/">
       <h1 class="text-lg font-bold">Twitch Clips</h1>
     </a>
-    <button *ngIf="!isLoggedIn" id="loginButton" (click)="toggleIsConnected()" class="py-2 px-4 drop-shadow-lg rounded-2xl hover:bg-lightPurple focus:outline focus:outline-2 outline-cream">Se connecter /
+    <button *ngIf="!isLoggedIn" id="loginButton" (click)="openAuthModal()" class="py-2 px-4 drop-shadow-lg rounded-2xl hover:bg-lightPurple focus:outline focus:outline-2 outline-cream">Se connecter /
       S'inscrire</button>
     <ng-container *ngIf="isLoggedIn">
       <div class="flex gap-4">
@@ -41,3 +41,7 @@
     </ul>
   </div>
 </header>
+
+<ng-template #authenticationModal let-modal>
+  <app-login></app-login>
+</ng-template>

@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {faArrowRight, faBars} from "@fortawesome/free-solid-svg-icons";
+import {AuthenticationService} from "../../../authentication/services/authentication.service";
+import {LoginComponent} from "../../../authentication/components/login/login.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,6 @@ import {faArrowRight, faBars} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   public showMobileMenu: boolean = false;
 
   private isLoggedInSubscription: Subscription = new Subscription();
@@ -19,8 +20,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public barsIcon: IconDefinition = faBars;
   public arrow: IconDefinition = faArrowRight;
 
+  @ViewChild('authenticationModal')
+  private authModal!: TemplateRef<LoginComponent>
+
   constructor(
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -44,11 +49,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authenticationService.logout();
   }
 
-  /**
-   * @deprecated à supprimer dès l'implémentation de l'authentification
-   */
-  public toggleIsConnected(): void {
-    this.authenticationService.login();
+  public openAuthModal(): void {
+    this.modalService.open(this.authModal, {
+      size: 'lg',
+      centered: true,
+      animation: true
+    })
   }
 }
 

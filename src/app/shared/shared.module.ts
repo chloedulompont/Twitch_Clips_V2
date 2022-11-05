@@ -5,6 +5,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {RouterModule} from '@angular/router';
 import {HomepageComponent} from './components/homepage/homepage.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {AuthenticationModule} from "../authentication/authentication.module";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AuthenticationModule
   ]
 })
 export class SharedModule {
