@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -14,7 +15,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule, SharedModule
   ]
 })
 export class AuthenticationModule { }

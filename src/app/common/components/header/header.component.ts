@@ -4,6 +4,8 @@ import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
 import {faArrowRight, faBars} from "@fortawesome/free-solid-svg-icons";
 import {AuthenticationService} from "../../../authentication/services/authentication.service";
 import {LoginComponent} from "../../../authentication/components/login/login.component";
+import {ModalService} from "../../../shared/module/modal/service/modal.service";
+import {ModalIds} from "../../../shared/enums/modal-ids";
 
 @Component({
   selector: 'app-header',
@@ -19,11 +21,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public barsIcon: IconDefinition = faBars;
   public arrow: IconDefinition = faArrowRight;
 
-  @ViewChild('authenticationModal')
-  private authModal!: TemplateRef<LoginComponent>
+  private readonly AUTHENTICATION_MODAL_ID: string = ModalIds.AUTHENTICATION_MODAL;
 
   constructor(
     private authenticationService: AuthenticationService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -48,12 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openAuthModal(): void {
-
-/*    this.modalService.open(this.authModal, {
-      size: 'lg',
-      centered: true,
-      animation: true
-    })*/
+    this.modalService.toggleModal(this.AUTHENTICATION_MODAL_ID);
   }
 }
 

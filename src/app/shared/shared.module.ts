@@ -5,23 +5,21 @@ import {FooterComponent} from '../common/components/footer/footer.component';
 import {RouterModule} from '@angular/router';
 import {HomepageComponent} from '../common/components/homepage/homepage.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {AuthenticationModule} from "../authentication/authentication.module";
+import { ModalComponent } from './module/modal/component/modal/modal.component';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    HomepageComponent
+    ModalComponent
   ],
-  exports: [
-    HeaderComponent
-  ],
+    exports: [
+        ModalComponent
+    ],
   imports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
-    AuthenticationModule
+
   ]
 })
 export class SharedModule {

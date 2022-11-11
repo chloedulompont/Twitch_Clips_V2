@@ -42,6 +42,6 @@
   </div>
 </header>
 
-<ng-template #authenticationModal let-modal>
-  <app-login></app-login>
-</ng-template>
+<!-- Authentication modal -->
+<app-login *ngIf="!isLoggedIn"></app-login>
+
