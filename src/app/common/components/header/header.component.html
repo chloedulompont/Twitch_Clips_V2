@@ -1,9 +1,9 @@
-<header class="bg-darkPurple text-cream">
+<header class="bg-darkBlue text-white">
   <nav class="py-4 px-8 flex justify-between items-center">
     <a href="#" routerLink="/">
-      <h1 class="text-lg font-bold">Twitch Clips</h1>
+      <h1 class="text-lg font-bold">YouVids</h1>
     </a>
-    <button *ngIf="!isLoggedIn" id="loginButton" (click)="openAuthModal()" class="py-2 px-4 drop-shadow-lg rounded-2xl hover:bg-lightPurple focus:outline focus:outline-2 outline-cream">Se connecter /
+    <button *ngIf="!isLoggedIn" id="loginButton" (click)="openAuthModal()" class="py-2 px-4 drop-shadow-lg outline-1 hover:outline focus:outline-2 outline-white">Se connecter /
       S'inscrire</button>
     <ng-container *ngIf="isLoggedIn">
       <div class="flex gap-4">

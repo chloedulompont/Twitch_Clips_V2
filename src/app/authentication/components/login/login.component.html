@@ -1,7 +1,49 @@
-<app-modal [modalId]="modalId" >
-  <h2 class="text-xl font-bold" heading>Authentication</h2>
-  <div class="py-10">
-    Je suis une modale ouverte
-  </div>
+<app-modal [modalId]="modalId">
+  <h2 class="text-2xl font-bold" heading>Authentication</h2>
+  <ng-container *ngIf="!displaySignInForm">
+    <div class="my-5 px-6 py-2 flex flex-col" id="loginForm">
+      <h3 class="mb-5 text-lg font-bold">Connexion</h3>
+      <form class="flex flex-col gap-7" [formGroup]="loginForm" (ngSubmit)="login()">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="text" placeholder="Email" [formControl]="loginEmail">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="password" placeholder="Mot de passe" [formControl]="loginPassword">
+        <button type="submit" [disabled]="!isLoginFormValid()" class="w-max mx-auto px-4 py-2 cursor-pointer outline outline-1 outline-white rounded hover:bg-white hover:text-darkBlue focus:outline-2">
+          Je me connecte
+        </button>
+      </form>
+    </div>
+    <hr>
+    <div id="signInForm" class="px-6 py-2 mb-5">
+      <h3 class="my-5 text-lg font-bold">Je n'ai pas de compte</h3>
+      <button class="w-max block mx-auto px-4 py-2 outline outline-1 outline-white rounded hover:bg-white hover:text-darkBlue focus:outline-2" (click)="toggleDisplaySignInForm()">
+        Je m'inscris
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="displaySignInForm">
+    <div class="my-5 px-6 py-2 flex flex-col" id="signInForm">
+      <h3 class="mb-5 text-lg font-bold">Inscription</h3>
+      <form class="flex flex-col gap-7" [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="text" placeholder="Nom d'utilisateur" [formControl]="signInUserName">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="text" placeholder="Email" [formControl]="signInEmail">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="password" placeholder="Mot de passe" [formControl]="signInPassword">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="password" placeholder="Confirmer le mot de passe" [formControl]="signInConfirmPassword">
+        <input class="px-2 py-1 leading-6 text-darkGray" type="text" placeholder="Birthdate" [formControl]="signInBirthDate">
+
+        <button type="submit" [disabled]="!isSignInFormValid()" class="w-max mx-auto px-4 py-2 cursor-pointer outline outline-1 outline-white rounded hover:bg-white hover:text-darkBlue focus:outline-2">
+          Je m'inscris
+        </button>
+      </form>
+    </div>
+    <hr>
+    <div class="px-6 py-2 mb-5">
+      <h3 class="my-5 text-lg font-bold">J'ai déjà un compte</h3>
+      <button class="w-max block mx-auto px-4 py-2 outline outline-1 outline-white rounded hover:bg-white hover:text-darkBlue focus:outline-2" (click)="toggleDisplaySignInForm()">
+        Je me connecte
+      </button>
+    </div>
+  </ng-container>
+
+
 </app-modal>
 

@@ -15,6 +15,8 @@ export class ModalComponent implements OnInit {
 
   public closeIcon: IconDefinition = faXmark;
 
+  public modalSize: string = 'lg';
+
   constructor(
     public modalService: ModalService
   ) { }
