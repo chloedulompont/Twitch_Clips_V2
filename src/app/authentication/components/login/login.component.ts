@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {ModalService} from "../../../shared/module/modal/service/modal.service";
 import {ModalIds} from "../../../shared/enums/modal-ids";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthenticationService} from "../../services/authentication.service";
+import {AuthenticationResultsEnum} from "../../enum/AuthenticationResultsEnum";
 
 @Component({
   selector: 'app-login',
@@ -71,7 +73,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   })
 
   constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -95,7 +98,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public login(){
-    console.log('Logged In');
+    this.authenticationService.login(this.loginEmail.value, this.loginPassword.value)
+      .subscribe(authResult => {
+        if(authResult === AuthenticationResultsEnum.NONE) {
+          console.log('Logged In');
+        }
+        console.log('error');
+      })
   }
 
   public isSignInFormValid(): boolean {
